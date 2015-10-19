@@ -1,0 +1,24 @@
+<% provide(:title, @user.name) %>
+<% provide(:panel_title, 'Update Status') %>
+<% provide(:button_text, 'Post') %>
+<div class="row">
+  <aside class="col-md-3">
+    <section class="user_info">
+      <%= render 'shared/user_info', user: @user %>
+    </section>
+  </aside>
+  <div class="col-md-6">
+    <%= render 'shared/entry_form' if current_user?(@user) %>
+    <div id="entries">
+      <% if @user.entries.any? %>
+      <%= render @entries %>
+      <% end %>
+    </div>
+    <div id="load-more">
+      <%= render 'shared/load_more_entry_of_user', user: @user, entries: @entries %>
+    </div>
+  </div>
+  <aside class="col-md-3">
+    <%= render 'users/index' %>
+  </aside>
+</div>

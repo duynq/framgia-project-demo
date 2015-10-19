@@ -1,0 +1,6 @@
+ <% if feed_items.total_pages > 1 %>
+	<%= form_for(home_path(user), method: :get, remote: true) do |f| %>
+		<%= hidden_field_tag :page, feed_items.next_page %>
+		<%= f.submit "Loading ...", class: "btn btn-info btn-block" %>
+	<% end %>
+<% end %>

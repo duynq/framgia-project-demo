@@ -1,0 +1,9 @@
+var more_entry = $("<%= escape_javascript(render @entries) %>").hide()
+more_entry.appendTo("#entries").show('normal');
+
+<% unless @entries.next_page.nil? %>
+$("#load-more").html('<%= escape_javascript(render 'shared/load_more_entry_of_user', user: @user, entries: @entries) %>');
+<% else %>
+$("#load-more").html('');
+<% end %>
+

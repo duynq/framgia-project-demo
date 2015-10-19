@@ -1,0 +1,8 @@
+var more_feed = $("<%= escape_javascript(render @feed_items) %>").hide()
+more_feed.appendTo("#feeds").show('normal');
+
+<% unless @feed_items.next_page.nil? %>
+$("#load-more").html('<%= escape_javascript(render "shared/load_more_entry_of_feed", user: @user, feed_items: @feed_items) %>');
+<% else %>
+$("#load-more").html('');
+<% end %>

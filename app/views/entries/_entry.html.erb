@@ -1,0 +1,52 @@
+<% comments = entry.comments.paginate(page: 1,per_page: 5) %>
+
+<div id="entry-<%= entry.id %>" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <div class="row">
+        <div class="col-md-1">
+          <%= link_to gravatar_for(entry.user, size: 40), entry.user %>
+        </div>
+        <div class="col-md-11">
+         <div class="pull-right">
+          <% if current_user?(entry.user) %>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><%= link_to("Edit", edit_entry_path(entry), remote: true) %></li>
+              <li><%= link_to("Delete", entry , method: :delete, data: { confirm: "Are sure?" }, remote: true) %></li>
+            </ul>   
+          </div>    
+          <% end %>
+        </div>   
+        <b><%= link_to entry.title, entry %></b><br/>
+        <h6><%= link_to "#{entry.user.name}", entry.user %>
+         <%= "- posted #{time_ago_in_words(entry.created_at)}." %></h6>
+      </div>
+    </div>
+  </h3>
+</div>
+<div class="panel-body">
+  <%= entry.content %>
+  <%= image_tag( entry.picture.url ) if entry.picture? %>
+</div>
+<div class="panel-footer">
+  <% if current_user.following?(entry.user) || current_user?(entry.user) %>
+  <div class="row" id="comment-form-of-entry-<%= entry.id %>">
+    <div class="col-md-12">
+      <%= render 'shared/comment_form', entry: entry %>
+    </div>
+  </div>
+  <% end %>
+  <% unless comments.nil? %>
+  <div id="comments-of-entry-<%= entry.id %>">
+    <%= render comments %>
+  </div>
+  <div id="load-more-comments-of-entry-<%= entry.id %>">
+    <% if comments.total_pages > 1 %>
+    <%= link_to("load more comments...", entry_path(entry, page: comments.next_page), remote: true) %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+</div>

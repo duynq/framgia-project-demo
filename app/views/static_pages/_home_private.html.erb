@@ -1,0 +1,14 @@
+<div class="row">
+  <aside class="col-md-3">
+    <section class="user_info">
+      <%= render 'shared/user_info', user: current_user %>
+    </section>
+  </aside>
+  <div class="col-md-6">
+  	<%= render 'shared/feed' %>
+  </div>
+
+  <aside class="col-md-3">
+    <%= render 'users/index' %>
+  </aside>
+</div>

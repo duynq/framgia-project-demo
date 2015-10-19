@@ -1,0 +1,32 @@
+<div class="row a_comment" id="comment-<%= comment.id %>">
+  <div class="col-md-1">
+    <span class="pull-right">
+      <%= link_to gravatar_for(comment.user, size: 25), comment.user %>
+    </span>
+  </div>
+  <div class="col-md-10">
+    <b><%= link_to comment.user.name, comment.user %></b>
+    <%= comment.content %>
+    <%= image_tag( comment.picture.url ) if comment.picture? %>
+    <br/>
+    <h6><%= time_ago_in_words(comment.created_at) %>. </h6>
+  </div>
+  <div class="col-md-1 action" style="display:none">
+    <% if current_user?(comment.user) %>
+      <%= link_to comment , method: :delete, data: { confirm: "Are sure?" }, remote: true do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+      <%= link_to edit_comment_path(comment), remote: true do %>
+        <span class="glyphicon glyphicon-edit"></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#comment-<%= comment.id %>').hover(function () {
+    $(this).find('.action').show()
+  },function () {
+    $(this).find('.action').hide()
+  })
+</script>

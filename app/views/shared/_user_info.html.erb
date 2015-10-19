@@ -1,0 +1,21 @@
+<div class="affix"  style="width:23%">
+	<div class="row">
+		<div class="col-md-3">
+			<%= gravatar_for(user, size: 55) %>
+		</div>
+		<div class="col-md-9">
+			<h4>
+				<%= user.name %>
+			</h4>
+			<%= link_to 'Edit Profile', edit_user_path(user) if current_user?(user) %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<%= render 'shared/stats', user: user %>
+			<br/>
+			<%= render 'shared/follow_form', user: user if logged_in? %>
+		</div>
+	</div>	
+</div>
+

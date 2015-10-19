@@ -1,0 +1,15 @@
+<br/>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	<a class="btn btn-default" href="<%= following_user_path(user) %>">
+		<strong id="following" class="stat">
+			<%= user.following.count %>
+		</strong>
+		following
+	</a>
+	<a class="btn btn-default"  href="<%= followers_user_path(user) %>">
+		<strong id="followers" class="stat">
+			<%= user.followers.count %>
+		</strong>
+		followers
+	</a>
+</div>

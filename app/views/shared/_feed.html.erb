@@ -1,0 +1,13 @@
+<% provide(:button_text, 'Post') %>
+<% provide(:panel_title, 'Update Status') %>
+<%= render 'shared/entry_form' %>
+<% if @feed_items.any? %>
+<div id="feeds">
+	<%= render @feed_items %>
+</div>
+<div class="row">
+	<div class="col-md-12" id="load-more">
+		<%= render 'shared/load_more_entry_of_feed', user: @user, feed_items: @feed_items %>
+	</div>
+</div>
+<% end %>

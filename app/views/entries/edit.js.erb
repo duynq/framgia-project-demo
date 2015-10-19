@@ -1,0 +1,4 @@
+<% provide(:title, 'Edit user') %>
+<% provide(:button_text, 'Save changes') %>
+<% provide(:panel_title, 'Update your entry') %>
+$('#entry-<%= @entry.id %>').replaceWith('<%= escape_javascript(render "shared/entry_form") %>')

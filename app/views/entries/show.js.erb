@@ -1,0 +1,10 @@
+var more_comment = $("<%= escape_javascript(render @comments) %>").hide()
+more_comment.appendTo("#comments-of-entry-<%= @entry.id %>").show('normal');
+<% unless @comments.next_page.nil? %>
+$("#load-more-comments-of-entry-<%= @entry.id %>").html('<%= link_to("load more comments...", entry_path(@entry, page: @comments.next_page), remote: true) %>');
+<% else %>
+$("#load-more-comments-of-entry-<%= @entry.id %>").html('');
+<% end %>
+
+
+

@@ -1,0 +1,27 @@
+<%= form_for(@comment ||= Comment.new, html: { multipart: true, class: "form-horizontal" }, remote: true) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="hidden">
+  <%= f.hidden_field :entry_id, value: entry.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+</div>
+
+<div class="form-group">
+  <div class="col-md-1">
+    <span class="pull-right">
+      <%= gravatar_for current_user, size: 30 %>
+    </span>
+  </div>
+  <div class="col-md-10">
+    <%= f.text_field :content, placeholder: "Write a comment...", class: "form-control comment_field" %>
+  </div>
+</div>
+
+
+  <!-- <span class="picture">
+  	<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span> -->
+  <% end %>
+
+  <script type="text/javascript">
+
+  </script>
