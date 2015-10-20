@@ -1,2 +1,7 @@
-$("#entry-").after('<%= escape_javascript(render @entry) %>')
-$("#entry-").find("textarea").val('')
+<% unless @entry.errors.any? %>
+	$("#entry-").after('<%= escape_javascript(render @entry) %>')
+	$("#entry-").find("#entry_title").val('')
+	$("#entry-").find("textarea").val('')
+<% end %>
+
+<%= render "shared/error_messages", object: @entry %>

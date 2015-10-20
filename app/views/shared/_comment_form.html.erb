@@ -1,5 +1,4 @@
 <%= form_for(@comment ||= Comment.new, html: { multipart: true, class: "form-horizontal" }, remote: true) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
 <div class="hidden">
   <%= f.hidden_field :entry_id, value: entry.id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
@@ -22,6 +21,4 @@
   </span> -->
   <% end %>
 
-  <script type="text/javascript">
 
-  </script>

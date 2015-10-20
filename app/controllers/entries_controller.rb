@@ -6,14 +6,13 @@ class EntriesController < ApplicationController
 	def create
 		@entry = current_user.entries.build(entry_params)
 		if @entry.save
-			flash[:success] = "Entry created!"
-			respond_to do |format|
-				format.html { redirect_to root_url }
-				format.js
-			end
+			flash.now[:success] = "Entry created!"
 		else
-			@feed_items = []
-			render 'static_pages/home'
+			flash.now[:danger] = "Entry invalid"
+		end
+
+		respond_to do |format|
+			format.js
 		end
 	end
 
@@ -21,7 +20,7 @@ class EntriesController < ApplicationController
 		@entry = Entry.find_by(id: params[:id])
 		@comments = @entry.comments.paginate(page: params[:page], per_page: 5)
 		if @entry.nil?
-			flash[:danger] = "Entry not found"
+			flash.now[:danger] = "Entry not found"
 			respond_to do |format|
 				format.html { redirect_to request.referrer || root_url }
 				format.js
@@ -32,7 +31,7 @@ class EntriesController < ApplicationController
 
 	def destroy
 		@entry.destroy
-		flash[:success] = "Entry deleted"
+		flash.now[:success] = "Entry deleted"
 		if request.referrer == entry_path(@entry)
 			@redirect = true
 		end
@@ -52,13 +51,14 @@ class EntriesController < ApplicationController
 	def update
 		@entry = Entry.find(params[:id])
 		if @entry.update_attributes(entry_params)
-			flash[:success] = "Entry updated"
-			respond_to do |format|
-				format.html { redirect_to @entry }
-				format.js
-			end
+			flash.now[:success] = "Entry updated"
 		else
-			render 'edit'
+			flash.now[:danger] = "Entry invalid"
+		end
+
+		respond_to do |format|
+			# format.html { redirect_to @entry }
+			format.js
 		end
 	end
 

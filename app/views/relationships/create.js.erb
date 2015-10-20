@@ -1,2 +1,3 @@
 $("#follow_form").html("<%= escape_javascript(render('shared/unfollow')) %>")
 $("#followers").html("<%= @user.followers.count %>")
+$(".comment_form").show()

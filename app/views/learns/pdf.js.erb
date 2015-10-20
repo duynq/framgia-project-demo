@@ -1,0 +1,5 @@
+<% @image_page_paths.each do |image_page_path| %>
+	var page = $("<div style='background-image:url(<%= "images/#{image_page_path}" %>)'></div>")
+	page.appendTo("#flipbook");
+<% end %>
+

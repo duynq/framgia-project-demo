@@ -31,13 +31,12 @@
   <%= image_tag( entry.picture.url ) if entry.picture? %>
 </div>
 <div class="panel-footer">
-  <% if current_user.following?(entry.user) || current_user?(entry.user) %>
-  <div class="row" id="comment-form-of-entry-<%= entry.id %>">
+  <div class="row comment_form" id="comment-form-of-entry-<%= entry.id %>" 
+    style="<%= 'display:none;' unless current_user.following?(entry.user) || current_user?(entry.user) %>" >
     <div class="col-md-12">
       <%= render 'shared/comment_form', entry: entry %>
     </div>
   </div>
-  <% end %>
   <% unless comments.nil? %>
   <div id="comments-of-entry-<%= entry.id %>">
     <%= render comments %>

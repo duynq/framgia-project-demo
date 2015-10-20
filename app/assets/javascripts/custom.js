@@ -43,4 +43,19 @@ $(document).ready(function () {
 	setInterval(function () {
 		is_activity_loading = false;
 	}, 2000);
+
+	// Goto top
+	$("a[href='#top']").click(function() {
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		return false;
+	});
+	
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			$("#top").fadeIn();
+		} else {
+			$("#top").fadeOut();
+		}
+	})
+
 })

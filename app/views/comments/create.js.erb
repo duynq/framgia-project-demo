@@ -1,2 +1,6 @@
+<% unless @comment.errors.any? %>
 $("#comment-form-of-entry-<%= @comment.entry.id %>").after("<%= escape_javascript(render @comment) %>")
 $("#comment-form-of-entry-<%= @comment.entry.id %>").find("input[type=text]")[0].value = ""
+<% end %>
+
+<%= render "shared/error_messages", object: @comment %>

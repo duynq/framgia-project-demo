@@ -19,10 +19,12 @@ gem 'carrierwave',  '0.10.0'
 gem 'mini_magick',  '3.8.0'
 gem 'fog', require: 'fog/aws'
 
-#Phan trang
+# Phan trang
 gem 'will_paginate',  '3.0.7'
 gem 'bootstrap-will_paginate',  '0.0.10'
 
+# PDF reader
+gem 'pdf-reader'
 
 group :development, :test do
   gem 'mailcatcher'
@@ -31,6 +33,7 @@ group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
+  gem 'rspec-rails'
 end
 
 group :test do

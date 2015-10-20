@@ -2,3 +2,5 @@
 <% provide(:button_text, 'Save changes') %>
 <% provide(:panel_title, 'Update your entry') %>
 $('#entry-<%= @entry.id %>').replaceWith('<%= escape_javascript(render "shared/entry_form") %>')
+
+<%= render "shared/error_messages", object: @entry %>

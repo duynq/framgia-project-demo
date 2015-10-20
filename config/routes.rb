@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   root 'static_pages#home'
+  # root 'learns#pdf'
 
   get     'home'    => 'static_pages#home'
   get     'help'    => 'static_pages#help'

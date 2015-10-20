@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   def create
   	@comment = Comment.new(comment_params)
-  	flash[:danger] = "Comment invalid" unless @comment.save
+  	flash.now[:danger] = "Comment invalid" unless @comment.save
   	respond_to do |format|
-      format.html { redirect_to request.referer }
+      # format.html { redirect_to request.referer }
       format.js
     end
   end
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def destroy
     @id = params[:id]
     Comment.find_by(id: @id).destroy
-    flash[:success] = "Comment deleted"
+    flash.now[:success] = "Comment deleted"
     respond_to do |format|
       # format.html { redirect_to request.referer }
       format.js
@@ -29,15 +29,14 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find_by(id: params[:id])
     if @comment.update_attributes(comment_params)
-      flash[:success] = "Comment updated"
-      respond_to do |format|
-        format.html {
-          redirect_to @comment.entry
-        }
-        format.js
-      end
+      flash.now[:success] = "Comment updated"
     else
-      render 'edit'
+      flash.now[:danger] = "Comment invalid"
+    end
+
+    respond_to do |format|
+      # format.html { redirect_to @comment.entry }
+      format.js
     end
   end  
 
