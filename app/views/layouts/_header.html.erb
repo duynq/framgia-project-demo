@@ -30,7 +30,7 @@
       </li>
       <% else %>
         <li>
-          <%= form_for :session, url: login_path, :html => {class: "navbar-form navbar-left", role: "form"}  do |f| %>
+          <%= form_for :session, url: login_path, :html => {class: "navbar-form navbar-left", role: "form"}, remote: true  do |f| %>
               <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
               <%= f.password_field :password, placeholder: "Passoword", class: "form-control"  %>
 

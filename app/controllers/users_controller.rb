@@ -28,11 +28,16 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       # log_in @user
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      flash.now[:info] = "Please check your email to activate your account."
+      # redirect_to root_url
     else
       flash.now[:danger] = "Invalid data input"
-      render 'static_pages/home'
+      # render 'static_pages/home'
+    end
+
+    respond_to do |format|
+      # format.html
+      format.js
     end
   end
   

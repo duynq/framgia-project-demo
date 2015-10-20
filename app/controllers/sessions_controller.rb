@@ -10,20 +10,21 @@ class SessionsController < ApplicationController
         log_in user
         session_params[:remember_me] == '1' ? remember(user) : forget(user)
         # redirect_back_or(user)
-        redirect_to root_url
       else
         message = "Account not activated. "
         message+= "Check your email for the activation link."
         flash[:warning] = message
-        redirect_to root_url
       end
-      
     else
       flash.now[:danger] = "Invalid email/password combination"
-      # tranh loi khi quay tro ve trang home co' sign-up form
-      @user = User.new
-      render 'static_pages/home'
     end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+
+
   end
   
   def destroy
